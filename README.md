@@ -1,6 +1,6 @@
-# StartLoc
+# startloc
 
-StartLoc is a simple tool that allows you to set a dynamic starting location for your terminal sessions. It supports both Zsh and Bash.
+startloc is a simple tool that allows you to set a dynamic starting location for your terminal sessions. It supports both Zsh and Bash.
 
 ## Installation
 
