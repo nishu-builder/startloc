@@ -39,7 +39,7 @@ if ! grep -q 'export PATH="$HOME/bin:$PATH"' "$SHELL_CONFIG"; then
 fi
 
 # Add cd command to shell config file if it's not already
-CD_CMD='if [ -f ~/.startlocpath ]; then STARTLOC_PATH=$(cat ~/.startlocpath); if [ -d "$STARTLOC_PATH" ]; then cd "$STARTLOC_PATH"; ENV_DIR="$STARTLOC_PATH/env"; if [ -d "$ENV_DIR" ] && [ -f "$ENV_DIR/bin/activate" ]; then source "$ENV_DIR/bin/activate"; fi; else echo "startloc path not found: $STARTLOC_PATH"; fi; fi'
+CD_CMD='if [ -f ~/.startlocpath ]; then STARTLOC_PATH=$(cat ~/.startlocpath); if [ -d "$STARTLOC_PATH" ]; then cd "$STARTLOC_PATH"; if [ -f "pyproject.toml" ]; then poetry shell; elif [ -d "env" ] && [ -f "env/bin/activate" ]; then source env/bin/activate; fi; else echo "startloc path not found: $STARTLOC_PATH"; fi; fi'
 if ! grep -q 'STARTLOC_PATH=$(cat ~/.startlocpath)' "$SHELL_CONFIG"; then
     echo "$CD_CMD" >> "$SHELL_CONFIG"
     echo "Auto-cd added to $SHELL_CONFIG."
